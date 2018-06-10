@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Publicar</ion-title>
+    </ion-navbar>
+</ion-header>
+  
+  <ion-content padding>
+    
+    <ion-list>
+  
+      <ion-item>
+        <ion-label stacked>Categoria</ion-label>
+        <ion-select [(ngModel)]="generos">
+          <ion-option value=1>Ação e Aventura</ion-option>
+          <ion-option value=2>Documentários</ion-option>
+          <ion-option value=3>Suspense</ion-option>
+          <ion-option value=4>Comédias</ion-option>
+          <ion-option value=5>Filmes românticos</ion-option>
+          <ion-option value=6>Séries</ion-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label color="primary" stacked>Título:</ion-label>
+        <ion-input type="text" [(ngModel)]="titulo"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label color="primary" stacked>Texto:</ion-label>
+        <ion-input type="text" [(ngModel)]="texto"></ion-input>
+      </ion-item>
+      
+    </ion-list>
+  
+    <button ion-button block (click)="pushParams()">Post</button>
+  
+  </ion-content>
+  

@@ -15,3 +15,19 @@ getArtigoR = do
     addHeader "Access-Control-Allow-Origin" "*"
     todosArtigos <- runDB $ selectList [] [Asc ArtigoPublicacao]
     sendStatusJSON ok200 (object ["resp" .= todosArtigos])
+
+-- salvar artigo
+postArtigoR :: Handler Value
+postArtigoR = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    artigo <- requireJsonBody :: Handler Artigo
+    aid <- runDB $ insert artigo
+    sendStatusJSON created201 (object ["resp" .= fromSqlKey aid])
+
+-- buscar artigo pelo id
+getArtigoIdR :: ArtigoId -> Handler Value
+getArtigoIdR aid = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    artigo <- runDB $ get404 aid
+    sendStatusJSON ok200 (object ["resp" .= artigo])
+    
