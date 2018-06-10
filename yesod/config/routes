@@ -9,4 +9,5 @@
 
 /artigo                     ArtigoR         GET POST
 /artigo/id/#ArtigoId        ArtigoIdR       GET
-/comentario                 ComentarioR     GET POST
+
+/categoria                  CategoriaR      GET POST
