@@ -6,3 +6,4 @@
 /usuario                    UsuarioR        POST
 
 /artigo                     ArtigoR         GET POST
+/artigo/id/#ArtigoId        ArtigoIdR       GET
