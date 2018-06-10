@@ -4,3 +4,5 @@
 /robots.txt RobotsR GET
 
 /usuario                    UsuarioR        POST
+
+/artigo                     ArtigoR         GET POST
