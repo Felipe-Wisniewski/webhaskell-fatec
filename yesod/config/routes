@@ -5,9 +5,6 @@
 
 /usuario                    UsuarioR        POST
 
-<<<<<<< 08d8dd161432c5dbf4ff6cb80afa71a6b3fa3037
 /artigo                     ArtigoR         GET POST
 /artigo/id/#ArtigoId        ArtigoIdR       GET
-=======
-/comentario                 ComentarioR     GET
->>>>>>> Rotas Comentario GET
+/comentario                 ComentarioR     GET POST

@@ -15,3 +15,11 @@ getComentarioR = do
     addHeader "Access-Control-Allow-Origin" "*"
     todosComentarios <- runDB $ selectList [] [Asc ComentarioDatacom]
     sendStatusJSON ok200 (object ["resp" .= todosComentarios])
+
+-- salvar comentario
+postComentarioR :: Handler Value
+postComentarioR = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    comentario <- requireJsonBody :: Handler Comentario
+    pid <- runDB $ insert comentario
+    sendStatusJSON created201 (object ["resp" .= fromSqlKey pid])
