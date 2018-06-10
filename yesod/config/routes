@@ -5,6 +5,8 @@
 
 /usuario                    UsuarioR        POST
 
+/comentario                 ComentarioR     GET
+
 /artigo                     ArtigoR         GET POST
 /artigo/id/#ArtigoId        ArtigoIdR       GET
 
