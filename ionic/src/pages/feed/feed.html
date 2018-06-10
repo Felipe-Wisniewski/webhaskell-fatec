@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+      <ion-title>Netflix Sinopses</ion-title>
+  </ion-navbar>
+</ion-header>
+  
+<ion-content padding>
+
+  <ion-list>
+    <ion-card *ngFor="let artigo of artigos"> <!-- inicia o card -->
+      <ion-item>
+        <h2>{{ artigo.titulo }}</h2>
+        <p>{{ artigo.categoriaid }}</p>
+      </ion-item>
+      
+      <img src=""> <!-- inserir uma imagem -->
+      
+      <ion-card-content>
+        <p>{{ artigo.texto }}</p>
+      </ion-card-content>
+      
+      <ion-row>
+        <ion-col center text-center>
+          <ion-note>{{ artigo.publicacao }}</ion-note>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left clear small>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>12 Likes</div>
+          </button>
+        </ion-col>
+    
+        <ion-col>
+          <button ion-button icon-left clear small (click)="abrirComentarios()">
+            <ion-icon name="text"></ion-icon>
+            <div>4 Comments</div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+
+</ion-content>
+  
