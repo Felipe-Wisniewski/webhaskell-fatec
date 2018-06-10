@@ -16,7 +16,7 @@ getComentarioR = do
     todosComentarios <- runDB $ selectList [] [Asc ComentarioDatacom]
     sendStatusJSON ok200 (object ["resp" .= todosComentarios])
 
--- salvar comentario
+-- salvar comentario, método de envio do comentário
 postComentarioR :: Handler Value
 postComentarioR = do
     addHeader "Access-Control-Allow-Origin" "*"
