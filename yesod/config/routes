@@ -9,3 +9,5 @@
 
 /artigo                     ArtigoR         GET POST
 /artigo/id/#ArtigoId        ArtigoIdR       GET
+
+/categoria                  CategoriaR      GET
