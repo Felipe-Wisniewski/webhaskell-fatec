@@ -23,3 +23,11 @@ postCategoriaR = do
     categoria <- requireJsonBody :: Handler Categoria
     cid <- runDB $ insert categoria
     sendStatusJSON created201 (object ["resp" .= fromSqlKey cid])
+
+-- buscar categoria pelo id ----------------------------------
+getCategoriaIdR :: CategoriaId -> Handler Value
+getCategoriaIdR cid = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    categoria <- runDB $ get404 cid
+    sendStatusJSON ok200 (object ["resp" .= categoria])
+    
