@@ -17,5 +17,10 @@ postUsuarioR = do
     uid <- runDB $ insert usuario
     sendStatusJSON created201 (object ["resp" .= fromSqlKey uid])
     
-
+-- buscar todos os usuários ------------------------------------
+getUsuarioR :: Handler Value
+getUsuarioR = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    todosUsuarios <- runDB $ selectList [] [Asc UsuarioNome]
+    sendStatusJSON ok200 (object ["resp" .= todosUsuarios])
     

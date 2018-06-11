@@ -10,6 +10,9 @@
 /categoria                  CategoriaR      GET POST
 /categoria/id/#CategoriaId  CategoriaIdR    GET
 
+/categoria                  CategoriaR      GET POST
+/categoria/id/#CategoriaId  CategoriaIdR    GET
+
 /artigo                     ArtigoR         GET POST
 /artigo/id/#ArtigoId        ArtigoIdR       GET
 
