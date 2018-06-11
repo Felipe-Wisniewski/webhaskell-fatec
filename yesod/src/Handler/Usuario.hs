@@ -18,4 +18,9 @@ postUsuarioR = do
     sendStatusJSON created201 (object ["resp" .= fromSqlKey uid])
     
 
-    
+-- buscar usuario pelo id ---------------------------------------
+getUsuarioIdR :: UsuarioId -> Handler Value
+getUsuarioIdR uid = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    usuario <- runDB $ get404 uid
+    sendStatusJSON ok200 (object ["resp" .= usuario])    
