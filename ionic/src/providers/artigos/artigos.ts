@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class ArtigosProvider {
-  private API_URL = 'http://192.168.0.123:8080/'
+  private API_URL = 'http://ceboland.ddns.net:8080/'
   private date = new Date();
   
   constructor(public http: Http) { }
