@@ -107,6 +107,21 @@ export class ArtigosProvider {
     });
   }
 
+  criaCurtida(artigoid: number) {
+    return new Promise((resolve, reject) => {
+      
+      let curtida = {artigoid: artigoid, total: 0};
+      let body = JSON.stringify(curtida);
+      
+      this.http.post(this.API_URL + 'curtida', body, null).subscribe((result: any) => {
+        resolve(result.json());
+      },
+      (error) => {
+        reject(error.json());
+      });
+    });
+  }
+
   publicarComentario() {
 
   }
