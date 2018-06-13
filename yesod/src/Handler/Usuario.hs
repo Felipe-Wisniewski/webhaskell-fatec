@@ -35,8 +35,6 @@ getUsuarioR = do
 postUsuarioLoginR :: Handler Value
 postUsuarioLoginR = do
     addHeader "Access-Control-Allow-Origin" "*"
-    request <- requireJsonBody :: Handler DataLogin
-	email <- return $ email request
-	password <- return $ password request
-	user <- runDB $ selectList [UsuarioEmail ==. email, UsuarioPassword ==. password] [Asc UsuarioId]
-    sendStatusJSON ok200 (object ["resp" .= user])
+    (email,password) <- requireJsonBody :: Handler (UsuarioEmail,UsuarioPassword)
+	uid <- runDB $ selectList [UsuarioEmail ==. email, UsuarioPassword ==. password] []
+    sendStatusJSON ok200 (object ["resp" .= uid]) -}
