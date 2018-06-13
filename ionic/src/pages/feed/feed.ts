@@ -44,6 +44,15 @@ export class FeedPage {
     });
   }
 
+  carregaTodasCategorias(){
+    this.artigosProvider.getCategorias().then((result: any) => {
+      this.todasCategorias = result;
+      console.log('carregaTodasCategorias');
+    }).catch((error: any) => {
+      this.toast.create({ message: 'Erro ao carregar categorias!', position: 'botton', duration: 3000}).present();  
+     });
+  }
+
   openArtigo(id: number) {
     this.artigosProvider.getArtigo(id).then((result: any) => {
       this.art = result.resp;
