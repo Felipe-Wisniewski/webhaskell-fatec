@@ -53,10 +53,13 @@ export class FeedPage {
      });
   }
 
-  openArtigo(id: number) {
-    this.artigosProvider.getArtigo(id).then((result: any) => {
-      this.art = result.resp;
-    })
+  likesPost(id){
+    for (var i = 0; i < this.todasCurtidas.resp.length; i++) {
+      if (this.todasCurtidas.resp[i].artigoid == id) {
+        return this.todasCurtidas.resp[i].total; 
+        console.log('likesPost'); 
+      }
+    };
   }
 
   abrirComentarios(){
