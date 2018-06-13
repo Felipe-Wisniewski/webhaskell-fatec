@@ -27,16 +27,16 @@
 
       <ion-row>
         <ion-col>
-          <button ion-button icon-left clear small>
+          <button ion-button icon-left clear small >
             <ion-icon name="thumbs-up"></ion-icon>
             <div>{{ artigo.curtidas }}</div>
           </button>
         </ion-col>
     
         <ion-col>
-          <button ion-button icon-left clear small (click)="abrirComentarios()">
+          <button ion-button icon-left clear small (click)="abrirComentarios(artigo.comentarioid)">
             <ion-icon name="text"></ion-icon>
-            <div>4 Comments</div>
+            <div>{{ artigo.comentarios }}</div>
           </button>
         </ion-col>
       </ion-row>

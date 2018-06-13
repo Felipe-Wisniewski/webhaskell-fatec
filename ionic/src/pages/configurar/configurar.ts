@@ -17,4 +17,7 @@ export class ConfigurarPage {
     this.navCtrl.push('UserLoginPage');
   }
 
+  logout() {
+    
+  }
 }

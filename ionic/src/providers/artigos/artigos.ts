@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class ArtigosProvider {
-  private API_URL = 'http://ceboland.ddns.net:8080/'
+  private API_URL = 'http://192.168.0.150:8080/'
   private date = new Date();
   
   constructor(public http: Http) { }
@@ -33,7 +33,6 @@ export class ArtigosProvider {
         password: password
       };
       let body = JSON.stringify(data);
-      
       this.http.post(this.API_URL + 'usuario/login', body, null).subscribe((result: any) => {
         resolve(result.json());
       },
@@ -72,8 +71,7 @@ export class ArtigosProvider {
 
   publicarArtigo(categoriaid: number, titulo: Text, texto: Text) {
     return new Promise((resolve, reject) => {
-      
-      let pub = this.date.getFullYear() + '-' + this.date.getDate() + '-' + (this.date.getMonth() + 1);
+      let pub = this.date.getDate() + '/' + (this.date.getMonth() + 1) + '/' + this.date.getFullYear();
 
       var artigo = {
         usuarioid: 1,
@@ -155,6 +153,19 @@ export class ArtigosProvider {
         reject(error.json());
       })
     });    
+  }
+
+  getComentarios() {
+    return new Promise((resolve, reject) => {
+      let url = this.API_URL + 'comentario';
+      
+      this.http.get(url).subscribe((result: any) => {
+        resolve(result.json());
+      },
+      (error) => {
+        reject(error.json());
+      })
+    });
   }
 
 }
