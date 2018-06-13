@@ -122,24 +122,15 @@ export class ArtigosProvider {
     });
   }
 
-  publicarComentario() {
-
-  }
-
-  getComentarios() {
-
-  }
-
-  getTotalComentarios() {
-
-  }
-
-  inserirCurtida() {
-
-  }
-
   getTotalCurtidas() {
-
+    return new Promise((resolve, reject) => {
+      this.http.get(this.API_URL + 'curtida').subscribe((result: any) => {
+        resolve(result.json());
+      },
+      (error) => {
+        reject(error.json());
+      })
+    });    
   }
 
 }
