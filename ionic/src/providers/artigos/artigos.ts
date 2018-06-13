@@ -57,6 +57,19 @@ export class ArtigosProvider {
     });
   }
 
+  getUsuarioEmail(email: string, password: string) {
+    return new Promise((resolve, reject) => {
+      let url = this.API_URL + 'usuario/email/' + email;
+      
+      this.http.get(url).subscribe((result: any) => {
+        resolve(result.json());
+      },
+      (error) => {
+        reject(error.json());
+      })
+    });
+  }
+
   publicarArtigo(categoriaid: number, titulo: Text, texto: Text) {
     return new Promise((resolve, reject) => {
       
