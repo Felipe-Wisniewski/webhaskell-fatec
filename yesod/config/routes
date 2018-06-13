@@ -20,3 +20,4 @@
 /comentario                 ComentarioR     GET POST
 
 /curtida                    CurtidaR        GET POST
+/curtida/id/#CurtidaId          CurtidaIdR      GET
