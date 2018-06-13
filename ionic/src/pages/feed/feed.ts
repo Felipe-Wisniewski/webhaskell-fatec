@@ -11,8 +11,9 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 export class FeedPage {
   artigos: any[];
   page: number;
-  art: any;
-
+  todasCurtidas: any;
+  todasCategorias: any;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, private toast: ToastController, private artigosProvider: ArtigosProvider) {  }
 
   ionViewDidEnter() {
@@ -33,11 +34,14 @@ export class FeedPage {
     });
   }
 
-  getArtigo() {
-    setTimeout(() => {
-      this.page += 1;
-      this.getArtigos(this.page);
-    }, 500);
+  carregaTodasCurtidas() {
+    this.artigosProvider.getTotalCurtidas().then((result: any) => {
+      this.todasCurtidas = result;
+      console.log('carregaTodasCurtidas');
+    })
+    .catch((error: any) => {
+      this.toast.create({ message: 'Erro ao carregar curtidas!', position: 'botton', duration: 3000}).present();  
+    });
   }
 
   openArtigo(id: number) {
