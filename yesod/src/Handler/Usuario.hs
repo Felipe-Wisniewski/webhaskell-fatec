@@ -16,25 +16,33 @@ postUsuarioR = do
     usuario <- requireJsonBody :: Handler Usuario
     uid <- runDB $ insert usuario
     sendStatusJSON created201 (object ["resp" .= fromSqlKey uid])
+    
+-- buscar todos os usuários ------------------------------------
+getUsuarioR :: Handler Value
+getUsuarioR = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    todosUsuarios <- runDB $ selectList [] [Asc UsuarioNome]
+    sendStatusJSON ok200 (object ["resp" .= todosUsuarios])    
 
 -- buscar usuario pelo id ---------------------------------------
 getUsuarioIdR :: UsuarioId -> Handler Value
 getUsuarioIdR uid = do
     addHeader "Access-Control-Allow-Origin" "*"
     usuario <- runDB $ get404 uid
-    sendStatusJSON ok200 (object ["resp" .= usuario])    
+    sendStatusJSON ok200 (object ["resp" .= usuario])
 
--- buscar todos os usuários ------------------------------------
-getUsuarioR :: Handler Value
-getUsuarioR = do
+-- buscar usuario pelo email ----------------------------------
+getUsuarioEmailR :: Text -> Handler Value
+getUsuarioEmailR email = do
     addHeader "Access-Control-Allow-Origin" "*"
-    todosUsuarios <- runDB $ selectList [] [Asc UsuarioNome]
-    sendStatusJSON ok200 (object ["resp" .= todosUsuarios])
-    
+    usuario <- runDB $ getBy $ UniqueEmail email
+    sendStatusJSON ok200 (object ["resp" .= usuario])
+       
+
 -- login -------------------------------------------------------
 postUsuarioLoginR :: Handler Value
 postUsuarioLoginR = do
     addHeader "Access-Control-Allow-Origin" "*"
-    (email,password) <- requireJsonBody :: Handler (UsuarioEmail,UsuarioPassword)
-	uid <- runDB $ selectList [UsuarioEmail ==. email, UsuarioPassword ==. password] []
-    sendStatusJSON ok200 (object ["resp" .= uid]) -}
+    (e,p) <- requireJsonBody :: Handler (Text,Text)
+    usuario <- runDB $ selectList [UsuarioEmail ==. e, UsuarioPassword ==. p] []
+    sendStatusJSON ok200 (object ["resp" .= usuario])

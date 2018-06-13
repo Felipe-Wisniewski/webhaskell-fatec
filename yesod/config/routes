@@ -5,6 +5,7 @@
 
 /usuario                    UsuarioR        GET POST
 /usuario/id/#UsuarioId      UsuarioIdR      GET
+/usuario/email/#Text        UsuarioEmailR   GET
 /usuario/login              UsuarioLoginR   POST
 
 /categoria                  CategoriaR      GET POST
