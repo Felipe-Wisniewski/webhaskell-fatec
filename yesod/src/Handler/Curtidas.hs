@@ -13,7 +13,7 @@ import Database.Persist.Postgresql
 getCurtidaR :: Handler Value
 getCurtidaR = do
     addHeader "Access-Control-Allow-Origin" "*"
-    todasCurtidas <- runDB $ selectList [] [Asc CurtidaTotal]
+    todasCurtidas <- runDB $ selectList [] [Asc CurtidaId]
     sendStatusJSON ok200 (object ["resp" .= todasCurtidas])
 
 -- salvar curtida
@@ -21,5 +21,13 @@ postCurtidaR :: Handler Value
 postCurtidaR = do
     addHeader "Access-Control-Allow-Origin" "*"
     curtida <- requireJsonBody :: Handler Curtida
-    lid <- runDB $ insert curtida
-    sendStatusJSON created201 (object ["resp" .= fromSqlKey lid])
+    cid <- runDB $ insert curtida
+    sendStatusJSON created201 (object ["resp" .= fromSqlKey cid])
+
+-- buscar curtida pelo id ---------------------------------------
+getCurtidaIdR :: CurtidaId -> Handler Value
+getCurtidaIdR cid = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    _ <- runDB $ get404 cid
+    curtida <- runDB $ selectList [CurtidaId ==. cid] []
+    sendStatusJSON ok200 (object ["resp" .= curtida])
