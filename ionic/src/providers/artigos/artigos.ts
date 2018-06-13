@@ -146,4 +146,15 @@ export class ArtigosProvider {
     });    
   }
 
+  getCategorias() {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.API_URL + 'categoria').subscribe((result: any) => {
+        resolve(result.json());
+      },
+      (error) => {
+        reject(error.json());
+      })
+    });    
+  }
+
 }
