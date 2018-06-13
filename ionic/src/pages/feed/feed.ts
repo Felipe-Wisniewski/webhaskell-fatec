@@ -62,6 +62,15 @@ export class FeedPage {
     };
   }
 
+  categoriaPost(id){
+    for (var i = 0; i < this.todasCategorias.resp.length; i++) {
+      if (this.todasCategorias.resp[i].id == id) {
+        console.log('categoriaPost');
+        return this.todasCategorias.resp[i].tipo;          
+      }
+    };
+  }
+
   abrirComentarios(){
     this.navCtrl.push('ComentariosPage');
   }
